@@ -4,7 +4,7 @@ resource "datadog_synthetics_test" "beacon" {
 
   request_definition {
     method = "GET"
-    url    = "https://www.uol.com.br"
+    url    = "http://<Host_URL>"
   }
 
   assertion {
