@@ -3,10 +3,10 @@
 # # To learn how to schedule deployments and services using the provider, go here: https://learn.hashicorp.com/terraform/kubernetes/deploy-nginx-kubernetes
 
 // Remove when using Terraform OSS
-data "tfe_outputs" "eks" {
-  organization = var.tfc_org
-  workspace = var.tfc_workspace
-}
+//data "tfe_outputs" "eks" {
+//  organization = var.tfc_org
+//  workspace = var.tfc_workspace
+//}
 
 # Terraform Remote State Datasource - Remote Backend AWS S3
 data "terraform_remote_state" "eks" {
