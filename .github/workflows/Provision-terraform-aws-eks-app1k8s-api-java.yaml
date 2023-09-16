@@ -33,8 +33,8 @@ jobs:
           TF_VAR_datadog_app_key: '${{ secrets.TF_DATADOG_APP_KEY }}'
           TF_VAR_datadog_site: '${{ secrets.TF_DATADOG_SITE }}'
         run: |
-          export TF_VAR_datadog_api_key2=TF_VAR_datadog_api_key
-          export TF_VAR_datadog_app_key2=TF_VAR_datadog_app_key
+          export TF_VAR_datadog_api_key=TF_VAR_datadog_api_key
+          export TF_VAR_datadog_app_key=TF_VAR_datadog_app_key
           export TF_VAR_datadog_site=TF_VAR_datadog_site
 
           cd 22-datadog-terraform-manifests

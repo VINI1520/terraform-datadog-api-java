@@ -8,14 +8,12 @@ variable "datadog_api_key" {
   type        = string
   description = "Datadog API Key"
   sensitive = true
-  default = "82925e1aab007c527130cfbf370566cc"
 }
 
 variable "datadog_app_key" {
   type        = string
   description = "Datadog Application Key"
   sensitive = true
-  default = "8f0ca4bc6ad08b6e176d22dbe270bace303953e6"
 }
 
 variable "datadog_site" {
