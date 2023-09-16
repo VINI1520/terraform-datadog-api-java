@@ -1,4 +1,4 @@
-/*
+
 resource "datadog_synthetics_test" "beacon" {
   type    = "api"
   subtype = "http"
@@ -26,4 +26,3 @@ resource "datadog_synthetics_test" "beacon" {
 
   status = "live"
 }
-*/

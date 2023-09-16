@@ -7,11 +7,13 @@ variable "application_name" {
 variable "datadog_api_key" {
   type        = string
   description = "Datadog API Key"
+  sensitive = true
 }
 
 variable "datadog_app_key" {
   type        = string
   description = "Datadog Application Key"
+  sensitive = true
 }
 
 variable "datadog_site" {
@@ -24,14 +26,4 @@ variable "datadog_api_url" {
   type        = string
   description = "Datadog API URL"
   default     = "https://api.datadoghq.com"
-}
-
-variable "TF_VAR_datadog_api_key" {
- type      = string
- sensitive = true
-}
-
-variable "TF_VAR_datadog_app_key" {
- type      = string
- sensitive = true
 }
