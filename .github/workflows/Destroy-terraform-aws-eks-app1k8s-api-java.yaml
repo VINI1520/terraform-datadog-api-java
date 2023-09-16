@@ -1,0 +1,40 @@
+name: Destroy terraform aws eks app1k8s api java
+on:
+  workflow_dispatch:
+    inputs:
+      ec2-name:
+        description: Network Dev
+        required: true
+        default: 'Network Dev'
+        type: string
+jobs:
+  destroy-api-java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: '${{ secrets.TF_USER_AWS_KEY }}'
+          aws-secret-access-key: '${{ secrets.TF_USER_AWS_SECRET }}'
+          aws-region: us-east-1
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+      - name: Terraform Apply
+        id:   apply
+        env:
+          TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
+          TF_VAR_datadog_api_key: '${{ secrets.TF_DATADOG_API_KEY }}'
+          TF_VAR_datadog_app_key: '${{ secrets.TF_DATADOG_APP_KEY }}'
+          TF_VAR_datadog_site: '${{ secrets.TF_DATADOG_SITE }}'
+          TF_VAR_datadog_api_url: '${{ secrets.TF_DATADOG_API_URL }}'
+        run: |
+          cd 22-datadog-terraform-manifests
+          terraform init
+          terraform plan -destroy -out=destroy.tfplan
+          terraform apply "destroy.tfplan"

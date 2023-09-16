@@ -18,7 +18,6 @@ data "terraform_remote_state" "eks" {
   }
 }
 
-
 data "aws_eks_cluster" "cluster" {
   name = data.terraform_remote_state.eks.outputs.cluster_id
 }
