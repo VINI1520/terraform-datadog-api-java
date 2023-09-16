@@ -1,3 +1,4 @@
+/*
 provider "helm" {
   kubernetes {
     config_path = "~/.kube/config"
@@ -14,6 +15,11 @@ resource "helm_release" "datadog_agent" {
   set_sensitive {
     name  = "datadog.apiKey"
     value = var.datadog_api_key
+  }
+
+  set_sensitive {
+    name  = "datadog.appKey"
+    value = var.datadog_app_key
   }
 
   set {
@@ -72,3 +78,4 @@ resource "helm_release" "datadog_agent" {
   }
 }
 
+*/
