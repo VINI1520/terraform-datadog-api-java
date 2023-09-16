@@ -14,7 +14,7 @@ resource "datadog_synthetics_test" "beacon" {
     target   = "200"
   }
 
-  locations = ["aws:us-west-2"]
+  locations = ["aws:us-east-1"]
   options_list {
     tick_every          = 900
     min_location_failed = 1
