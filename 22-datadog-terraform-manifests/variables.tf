@@ -9,7 +9,7 @@ variable "datadog_api_key" {
   description = "Datadog API Key"
   sensitive = true
   validation {
-    condition = length(var.datadog_api_key) >= 3
+    condition = length(var.datadog_api_key) <= 3
     error_message = "Api key must be at least 3 characters"
   }
 }
@@ -19,7 +19,7 @@ variable "datadog_app_key" {
   description = "Datadog Application Key"
   sensitive = true
   validation {
-    condition = length(var.datadog_app_key) >= 3
+    condition = length(var.datadog_app_key) <= 3
     error_message = "App key must be at least 3 characters"
   }
 }
