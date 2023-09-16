@@ -25,3 +25,13 @@ variable "datadog_api_url" {
   description = "Datadog API URL"
   default     = "https://api.datadoghq.com"
 }
+
+variable "TF_VAR_datadog_api_key" {
+ type      = string
+ sensitive = true
+}
+
+variable "TF_VAR_datadog_app_key" {
+ type      = string
+ sensitive = true
+}
