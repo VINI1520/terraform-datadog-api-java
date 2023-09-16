@@ -1,4 +1,4 @@
-
+/*
 provider "helm" {
   kubernetes {
     config_path = "~/.kube/config"
@@ -82,3 +82,4 @@ resource "helm_release" "datadog_agent" {
     value = "HostToContainer"
   }
 }
+*/
