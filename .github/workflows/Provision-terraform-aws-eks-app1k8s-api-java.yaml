@@ -34,6 +34,11 @@ jobs:
           TF_VAR_datadog_site: '${{ secrets.TF_DATADOG_SITE }}'
           TF_VAR_datadog_api_url: '${{ secrets.TF_DATADOG_API_URL }}'
         run: |
+          export TF_VAR_datadog_api_key=TF_VAR_datadog_api_key
+          export TF_VAR_datadog_app_key=TF_VAR_datadog_app_key
+          export TF_VAR_datadog_site=TF_VAR_datadog_site
+          export TF_VAR_datadog_api_url=TF_VAR_datadog_api_url
+
           cd 22-datadog-terraform-manifests
           terraform init
           terraform validate
