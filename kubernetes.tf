@@ -8,22 +8,38 @@ data "tfe_outputs" "eks" {
   workspace = var.tfc_workspace
 }
 
-/* Uncomment when using Terraform OSS
+# Terraform Remote State Datasource - Remote Backend AWS S3
 data "terraform_remote_state" "eks" {
-  backend = "local"
-
+  backend = "s3"
   config = {
-    path = "../learn-terraform-provision-eks-cluster/terraform.tfstate"
+    bucket = "terraform-abcd-cluster-api-java"
+    key    = "dev/eks-cluster/terraform.tfstate"
+    region = "us-east-1"
   }
 }
-*/
 
 
+data "aws_eks_cluster" "cluster" {
+  name = data.terraform_remote_state.eks.outputs.cluster_id
+}
+
+data "aws_eks_cluster_auth" "cluster" {
+  name = data.terraform_remote_state.eks.outputs.cluster_id
+}
+
+# Terraform Kubernetes Provider
+provider "kubernetes" {
+  host = data.terraform_remote_state.eks.outputs.cluster_endpoint 
+  cluster_ca_certificate = base64decode(data.terraform_remote_state.eks.outputs.cluster_certificate_authority_data)
+  token = data.aws_eks_cluster_auth.cluster.token
+}
+
+/*
 # Retrieve EKS cluster configuration
 data "aws_eks_cluster" "cluster" {
-  /* Uncomment when using Terraform OSS
-  name = data.terraform_remote_state.eks.outputs.cluster_name
-  */
+  // Uncomment when using Terraform OSS
+  //name = data.terraform_remote_state.eks.outputs.cluster_name
+  
 
   // Remove when using Terraform OSS
   name = data.tfe_outputs.eks.values.cluster_name
@@ -43,6 +59,7 @@ provider "kubernetes" {
     ]
   }
 }
+*/
 
 resource "kubernetes_namespace" "beacon" {
   metadata {
