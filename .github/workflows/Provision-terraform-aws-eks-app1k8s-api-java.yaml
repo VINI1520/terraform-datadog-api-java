@@ -38,7 +38,8 @@ jobs:
           export TF_VAR_datadog_site=$TF_VAR_datadog_site
 
           cd 22-datadog-terraform-manifests
-          terraform init -lock=false
+          terraform init
+          terraform force-unlock bcf29a09-edb5-e243-0d12-013dc529dfe9
           terraform validate
           terraform plan
           terraform apply -auto-approve
