@@ -19,8 +19,8 @@ resource "datadog_synthetics_test" "beacon" {
     min_location_failed = 1
   }
 
-  name    = "Beacon API Check"
-  message = "Oh no! Light from the Beacon app is no longer shining!"
+  name    = "Tecsys website Check"
+  message = "Oh no! The Tecsys website is no longer avaliable!"
   tags    = ["app:beacon", "env:demo"]
 
   status = "live"
