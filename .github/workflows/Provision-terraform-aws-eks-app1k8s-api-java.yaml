@@ -1,4 +1,4 @@
-name: Provision terraform aws eks cluster api java
+name: Provision terraform aws datadog cluster
 on:
   workflow_dispatch:
     inputs:
@@ -8,7 +8,7 @@ on:
         default: 'Network Dev'
         type: string
 jobs:
-  provision-api-java:
+  provision-datadog-cluster:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

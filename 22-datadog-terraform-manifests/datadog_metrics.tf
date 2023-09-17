@@ -14,8 +14,8 @@ resource "datadog_monitor" "beacon" {
   query = "max(last_1m):sum:kubernetes.containers.running{short_image:beacon} <= 1"
 
   monitor_thresholds {
-    ok       = 3
-    warning  = 2
+    ok       = 2
+    //warning  = 2
     critical = 1
   }
 

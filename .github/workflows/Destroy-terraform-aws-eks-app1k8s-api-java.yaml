@@ -1,4 +1,4 @@
-name: Destroy terraform aws eks app1k8s api java
+name: Destroy terraform datadog cluster
 on:
   workflow_dispatch:
     inputs:
@@ -8,7 +8,7 @@ on:
         default: 'Network Dev'
         type: string
 jobs:
-  destroy-api-java:
+  destroy-datadog-cluster:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
