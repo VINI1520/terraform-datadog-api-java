@@ -4,7 +4,7 @@ resource "datadog_synthetics_test" "beacon" {
 
   request_definition {
     method = "GET"
-    url    = "http://<Host_URL>"
+    url    = "https://www.tecsys.com/"
   }
 
   assertion {
