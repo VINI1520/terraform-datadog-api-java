@@ -20,7 +20,7 @@ resource "datadog_synthetics_test" "beacon" {
   }
 
   name    = "Tecsys website Check"
-  message = "Oh no! The Tecsys website is no longer avaliable!"
+  message = "Oh no! The Tecsys website is no longer available!"
   tags    = ["app:beacon", "env:demo"]
 
   status = "live"
