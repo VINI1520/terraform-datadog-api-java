@@ -1,4 +1,4 @@
-
+/*
 provider "helm" {
   kubernetes {
     host = data.terraform_remote_state.eks.outputs.cluster_endpoint 
@@ -29,6 +29,7 @@ resource "helm_release" "datadog_agent" {
     value = var.datadog_site
   }
 }
+*/
 
 /*
 
