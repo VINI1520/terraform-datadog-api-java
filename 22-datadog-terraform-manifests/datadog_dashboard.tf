@@ -1,3 +1,4 @@
+/*
 resource "datadog_dashboard" "beacon" {
   title       = "Beacon Service"
   description = "A Datadog Dashboard for the ${kubernetes_deployment.beacon.metadata[0].name} deployment"
@@ -99,3 +100,4 @@ resource "datadog_dashboard" "beacon" {
     }
   }
 }
+*/
