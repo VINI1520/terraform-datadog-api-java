@@ -25,11 +25,13 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_wrapper: false
-          
+
       #Install helm
       - name: Install Helm
         run: |
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+          helm repo add datadog https://helm.datadoghq.com
+          helm install my-datadog-operator datadog/datadog-operator
 
       - name: Terraform Apply
         id:   apply
