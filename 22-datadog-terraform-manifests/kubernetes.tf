@@ -8,7 +8,7 @@
 //  workspace = var.tfc_workspace
 //}
 
-/********************************
+
 # Terraform Remote State Datasource - Remote Backend AWS S3
 data "terraform_remote_state" "eks" {
   backend = "s3"
@@ -27,6 +27,7 @@ data "aws_eks_cluster_auth" "cluster" {
   name = data.terraform_remote_state.eks.outputs.cluster_id
 }
 
+/********************************
 # Terraform Kubernetes Provider
 provider "kubernetes" {
   host = data.terraform_remote_state.eks.outputs.cluster_endpoint 
