@@ -8,6 +8,7 @@
 //  workspace = var.tfc_workspace
 //}
 
+/********************************
 # Terraform Remote State Datasource - Remote Backend AWS S3
 data "terraform_remote_state" "eks" {
   backend = "s3"
@@ -32,33 +33,6 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.terraform_remote_state.eks.outputs.cluster_certificate_authority_data)
   token = data.aws_eks_cluster_auth.cluster.token
 }
-
-/*
-# Retrieve EKS cluster configuration
-data "aws_eks_cluster" "cluster" {
-  // Uncomment when using Terraform OSS
-  //name = data.terraform_remote_state.eks.outputs.cluster_name
-  
-
-  // Remove when using Terraform OSS
-  name = data.tfe_outputs.eks.values.cluster_name
-}
-
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  exec {
-    api_version = "client.authentication.k8s.io/v1beta1"
-    command     = "aws"
-    args = [
-      "eks",
-      "get-token",
-      "--cluster-name",
-      data.aws_eks_cluster.cluster.name
-    ]
-  }
-}
-*/
 
 resource "kubernetes_namespace" "beacon" {
   metadata {
@@ -121,3 +95,4 @@ resource "kubernetes_service" "beacon" {
 output "beacon_endpoint" {
   value = "${kubernetes_service.beacon.status[0].load_balancer[0].ingress[0].hostname}:8080"
 }
+********************************/
