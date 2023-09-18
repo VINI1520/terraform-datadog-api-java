@@ -7,6 +7,8 @@ provider "helm" {
   }
 }
 
+/*
+
 resource "helm_release" "datadog_agent" {
   name       = "datadog-agent"
   chart      = "datadog"
@@ -84,3 +86,4 @@ resource "helm_release" "datadog_agent" {
     value = "HostToContainer"
   }
 }
+*/

@@ -8,6 +8,7 @@
 //  workspace = var.tfc_workspace
 //}
 
+/********************************
 # Terraform Remote State Datasource - Remote Backend AWS S3
 data "terraform_remote_state" "eks" {
   backend = "s3"
@@ -39,7 +40,6 @@ resource "kubernetes_namespace" "beacon" {
   }
 }
 
-/********************************
 resource "kubernetes_deployment" "beacon" {
   metadata {
     name      = var.application_name
