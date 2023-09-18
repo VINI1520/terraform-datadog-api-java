@@ -11,7 +11,7 @@ resource "helm_release" "datadog_agent" {
   name       = "datadog-agent"
   chart      = "datadog"
   repository = "https://helm.datadoghq.com"
-  version    = "3.10.9"
+  version    = "3.36.2"
   namespace  = "default"
 
   set_sensitive {
