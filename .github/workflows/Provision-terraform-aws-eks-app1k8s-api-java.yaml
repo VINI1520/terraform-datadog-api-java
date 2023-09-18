@@ -25,6 +25,12 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_wrapper: false
+          
+      #Install helm
+      - name: Install Helm
+        run: |
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
       - name: Terraform Apply
         id:   apply
         env:
