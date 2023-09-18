@@ -7,6 +7,29 @@ provider "helm" {
   }
 }
 
+resource "helm_release" "datadog_agent" {
+  name       = "datadog-agent"
+  chart      = "datadog"
+  repository = "https://helm.datadoghq.com"
+  version    = "3.10.9"
+  namespace  = "default"
+
+  set_sensitive {
+    name  = "datadog.apiKey"
+    value = var.datadog_api_key
+  }
+
+  set_sensitive {
+    name  = "datadog.appKey"
+    value = var.datadog_app_key
+  }
+
+  set {
+    name  = "datadog.site"
+    value = var.datadog_site
+  }
+}
+
 /*
 
 resource "helm_release" "datadog_agent" {
