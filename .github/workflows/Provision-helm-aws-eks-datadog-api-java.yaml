@@ -26,20 +26,16 @@ jobs:
         with:
           terraform_wrapper: false
 
-      - name: Terraform Apply
-        id:   apply
-        env:
-          TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
-          TF_VAR_datadog_api_key: '${{ secrets.TF_DATADOG_API_KEY }}'
-          TF_VAR_datadog_app_key: '${{ secrets.TF_DATADOG_APP_KEY }}'
-          TF_VAR_datadog_site: '${{ secrets.TF_DATADOG_SITE }}'
+      #Install helm
+      - name: Install Helm
         run: |
-          export TF_VAR_datadog_api_key=$TF_VAR_datadog_api_key
-          export TF_VAR_datadog_app_key=$TF_VAR_datadog_app_key
-          export TF_VAR_datadog_site=$TF_VAR_datadog_site
+          curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+          helm repo add datadog https://helm.datadoghq.com
+          helm repo update
 
-          cd 22-datadog-terraform-manifests
-          terraform init
-          terraform validate
-          terraform plan
-          terraform apply -auto-approve
+      #Install helm
+      - name: Setup kubectl
+        run: |
+          aws eks update-kubeconfig --region us-east-1 --name BUS-dev-eksdemo
+          kubectl get svc
+          helm install my-datadog-operator datadog/datadog-operator
