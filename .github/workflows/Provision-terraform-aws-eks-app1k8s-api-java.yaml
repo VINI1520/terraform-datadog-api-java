@@ -39,7 +39,6 @@ jobs:
 
           cd 22-datadog-terraform-manifests
           terraform init
-          terraform force-unlock -force bcf29a09-edb5-e243-0d12-013dc529dfe9
           terraform validate
           terraform plan
           terraform apply -auto-approve
