@@ -35,8 +35,14 @@ jobs:
 
       #Install helm
       - name: Setup kubectl
+        env:
+          TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
+          TF_VAR_datadog_api_key: '${{ secrets.TF_DATADOG_API_KEY }}'
+          TF_VAR_datadog_app_key: '${{ secrets.TF_DATADOG_APP_KEY }}'
+          TF_VAR_datadog_site: '${{ secrets.TF_DATADOG_SITE }}'
         run: |
           aws eks update-kubeconfig --region us-east-1 --name BUS-dev-eksdemo
           helm list
           kubectl get pods
           helm list -n datadog-monitor | grep -q my-datadog-operator || helm install my-datadog-operator datadog/datadog-operator --namespace datadog-monitor --create-namespace
+          helm list -n datadog-monitor | grep -q my-datadog-agent || helm install my-datadog-agent -f datadog-values.yaml --set datadog.site='datadoghq.com' --set datadog.apiKey=$TF_VAR_datadog_api_key datadog/datadog --namespace datadog-monitor
