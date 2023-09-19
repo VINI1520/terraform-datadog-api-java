@@ -40,4 +40,4 @@ jobs:
           helm list
           kubectl get pods
           helm delete my-datadog-operator
-          helm install my-datadog-operator datadog/datadog-operator -n datadog-monitor
+          helm list -n datadog-monitor | grep -q my-datadog-operator || helm install my-datadog-operator datadog/datadog-operator --namespace datadog-monitor --create-namespace
