@@ -32,6 +32,7 @@ jobs:
           curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
           helm repo add datadog https://helm.datadoghq.com
           helm repo update
+          helm list
 
       #Install helm
       - name: Setup kubectl
