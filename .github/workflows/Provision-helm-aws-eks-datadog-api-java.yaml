@@ -38,5 +38,5 @@ jobs:
       - name: Setup kubectl
         run: |
           aws eks update-kubeconfig --region us-east-1 --name BUS-dev-eksdemo
-          kubectl get svc
+          kubectl get
           helm install my-datadog-operator datadog/datadog-operator
