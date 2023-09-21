@@ -1,4 +1,4 @@
-/*
+
 provider "helm" {
   kubernetes {
     host = data.terraform_remote_state.eks.outputs.cluster_endpoint 
@@ -12,7 +12,7 @@ resource "helm_release" "datadog_agent" {
   chart      = "datadog"
   repository = "https://helm.datadoghq.com"
   version    = "3.36.2"
-  namespace  = "default"
+  namespace  = "datadog-monitor"
 
   set_sensitive {
     name  = "datadog.apiKey"
@@ -29,7 +29,6 @@ resource "helm_release" "datadog_agent" {
     value = var.datadog_site
   }
 }
-*/
 
 /*
 
@@ -110,4 +109,5 @@ resource "helm_release" "datadog_agent" {
     value = "HostToContainer"
   }
 }
+
 */
