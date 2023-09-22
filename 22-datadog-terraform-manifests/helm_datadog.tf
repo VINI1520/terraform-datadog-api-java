@@ -84,10 +84,6 @@ resource "helm_release" "datadog_agent" {
     value = "HostToContainer"
   }
 
-  set {
-    name  = "datadog.orchestratorExplorer"
-    value = true
-  }
 }
 
 /*
