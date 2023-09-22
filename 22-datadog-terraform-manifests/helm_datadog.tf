@@ -86,7 +86,7 @@ resource "helm_release" "datadog_agent" {
 
   set {
     name  = "datadog.orchestratorExplorer"
-    value = "true"
+    value = true
   }
 }
 
